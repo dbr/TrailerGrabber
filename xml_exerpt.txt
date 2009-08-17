@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<records date="Sun, 16 Aug 2009 01:46:19 -0700">
+    <movieinfo id="2927">
+        <info>
+            <title>2012</title>
+            <runtime>2:49</runtime>
+            <rating>Not yet rated</rating>
+            <studio>Sony Pictures</studio>
+            <postdate>2009-06-26</postdate>
+            <releasedate>2009-11-13</releasedate>
+            <copyright>© Copyright 2009 Sony Pictures</copyright>
+            <director>Roland Emmerich</director>
+            <description>Never before has a date in history been so significant to so many cultures, so many religions, scientists, and governments. 2012 is an epic adventure about a global cataclysm that brings an end to the world and tells of the heroic struggle of the survivors.</description>
+        </info>
+        <cast>
+            <name>John Cusack</name>
+            <name>Chiwetel Ejiofor</name>
+            <name>Amanda Peet</name>
+            <name>Oliver Platt</name>
+            <name>Thandie Newton</name>
+        </cast>
+        <genre>
+            <name>Drama</name>
+        </genre>
+        <poster>
+            <location>http://images.apple.com/moviesxml/s/sony_pictures/posters/2012_l200906261532.jpg</location>
+            <xlarge>http://images.apple.com/moviesxml/s/sony_pictures/posters/2012_xl200906261532.jpg</xlarge>
+        </poster>
+        <preview>
+            <large filesize="101969275">
+    http://movies.apple.com/movies/sony/2012/2012-tlr2_a720p.m4v</large>
+        </preview>
+    </movieinfo>
+</records>
