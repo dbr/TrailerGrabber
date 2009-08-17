@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="483"/>
+			<integer value="457"/>
 			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -1137,10 +1137,9 @@
 								<string key="NSToolbarItemPaletteLabel">Search box</string>
 								<nil key="NSToolbarItemToolTip"/>
 								<object class="NSSearchField" key="NSToolbarItemView" id="1018814169">
-									<reference key="NSNextResponder"/>
+									<nil key="NSNextResponder"/>
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{0, 14}, {96, 22}}</string>
-									<reference key="NSSuperview"/>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSSearchFieldCell" key="NSCell" id="880265103">
 										<int key="NSCellFlags">343014976</int>
@@ -1310,13 +1309,13 @@
 											<object class="NSMutableArray" key="NSTableColumns">
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSTableColumn" id="602104854">
-													<double key="NSWidth">6.600000e+01</double>
-													<double key="NSMinWidth">6.600000e+01</double>
-													<double key="NSMaxWidth">6.600000e+01</double>
+													<double key="NSWidth">3.300000e+01</double>
+													<double key="NSMinWidth">3.300000e+01</double>
+													<double key="NSMaxWidth">3.300000e+01</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
 														<int key="NSCellFlags">75628032</int>
 														<int key="NSCellFlags2">0</int>
-														<string key="NSContents">Download?</string>
+														<string key="NSContents">Grab</string>
 														<object class="NSFont" key="NSSupport" id="26">
 															<string key="NSName">LucidaGrande</string>
 															<double key="NSSize">1.100000e+01</double>
@@ -1359,8 +1358,8 @@
 													<reference key="NSTableView" ref="451193099"/>
 												</object>
 												<object class="NSTableColumn" id="841190657">
-													<double key="NSWidth">1.780000e+02</double>
-													<double key="NSMinWidth">1.780000e+02</double>
+													<double key="NSWidth">2.110000e+02</double>
+													<double key="NSMinWidth">2.110000e+02</double>
 													<double key="NSMaxWidth">9.000000e+03</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
 														<int key="NSCellFlags">75628032</int>
@@ -3654,7 +3653,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{9, 530}, {617, 169}}</string>
+					<string>{{9, 0}, {617, 0}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
