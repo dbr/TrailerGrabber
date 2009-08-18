@@ -5,12 +5,12 @@
 
 -(NSMutableAttributedString*)displayString {
     // Formats the main column using the title/description.
-    NSMutableAttributedString *ns = [[NSMutableAttributedString alloc] initWithString:title];
+    NSMutableAttributedString *ns = [[[NSMutableAttributedString alloc] initWithString:title] autorelease];
     [ns addAttribute:NSFontAttributeName value:[NSFont userFontOfSize:20] range:NSMakeRange(0, [title length])];
     
     if(description){
-        [ns appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"\n"]];
-        [ns appendAttributedString:[[NSMutableAttributedString alloc] initWithString:description]];
+        [ns appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
+        [ns appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:description] autorelease]];
     }
     return ns;
 }
@@ -20,7 +20,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:60];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
 }
 
 - (void)connection:(NSURLConnection *)connection

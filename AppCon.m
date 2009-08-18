@@ -50,6 +50,8 @@
     NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:urlData
                                                      options:0
                                                        error:&error];
+    [doc autorelease];
+    
     if(!doc){
         NSLog(@"%@", [error localizedDescription]);
         //TODO: Better error message
@@ -66,7 +68,7 @@
     }
     
     for(NSXMLElement *curmovie in movies){
-        Trailer *newtrailer = [[Trailer alloc] init];
+        Trailer *newtrailer = [[[Trailer alloc] init] autorelease];
         
         // Get info/title into newtrailer.title
         NSArray *title = [curmovie objectsForXQuery:@"info/title" error:&error];
