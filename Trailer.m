@@ -14,20 +14,6 @@
     }
     return ns;
 }
-//-(NSData*)poster{
-//    [self load];
-//    return nil;
-//    if(poster_cache != nil){
-//        NSLog(@"Poster is cached!");
-//        return self.poster_cache;
-//    }
-//    
-//    NSURL *url = [NSURL URLWithString:poster_url];
-//    NSLog(@"Getting poster %@", poster_url);
-//    NSImage *poster_img = [[NSImage alloc] initWithData:[url resourceDataUsingCache:YES]];
-//    poster_cache = [poster_img TIFFRepresentation];
-//    return poster_cache;
-//}
 
 - (void)loadPoster {
     NSURL *myURL = [NSURL URLWithString:poster_url];
