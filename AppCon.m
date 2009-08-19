@@ -13,51 +13,22 @@
     [self refresh:self];
 }
 
--(void)refresh:(id)sender {
-    // Setup URL
-    NSURL *url_720p = [NSURL URLWithString:@"http://www.apple.com/trailers/home/xml/current_720p.xml"];
-    
-    // ..and the request
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url_720p
-                                             cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                         timeoutInterval:30];
-    // ..finally make the request!
-    NSData *urlData;
-    NSURLResponse *response;
-    NSError *error;
-    
-    urlData = [NSURLConnection sendSynchronousRequest:urlRequest
-                                    returningResponse:&response
-                                                error:&error];
-    
-    // Check for errors
-    if(!urlData){
-        NSLog(@"%@", [error localizedDescription]);
-        NSAlert *alert = 
-        
-        [NSAlert alertWithMessageText:@"Sorry, there seems to be some problem getting the XML feed"
-                        defaultButton:@"Appology accepted"
-                      alternateButton:nil
-                          otherButton:nil
-            informativeTextWithFormat:[NSString stringWithFormat:@"Ensure Apple still exist and have a functioning website. Also check you internet connection hasn't exploded (Oh, the error was.. %@)", [error localizedDescription]]];
-        
-        [alert runModal];
-        return;
-    }
-    
+-(void)processXml:(NSData *)urlData{
+	NSError *error;
+	
     // Parse XML into document thingy
-    
-    NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:urlData
+    	
+	NSXMLDocument *doc = [[NSXMLDocument alloc] initWithData:urlData
                                                      options:0
                                                        error:&error];
-    [doc autorelease];
+	[doc autorelease];
     
     if(!doc){
-        NSLog(@"%@", [error localizedDescription]);
-        //TODO: Better error message
-        NSAlert *alert = [NSAlert alertWithError:error];
-        [alert runModal];
-        return;
+		NSLog(@"%@", [error localizedDescription]);
+		//TODO: Better error message
+		NSAlert *alert = [NSAlert alertWithError:error];
+		[alert runModal];
+		return;
     }
         
     NSArray *movies = [doc objectsForXQuery:@"records/movieinfo" error:&error];
@@ -89,6 +60,39 @@
         
         [ArrayCon addObject:newtrailer];
     }
+
+}
+-(void)refresh:(id)sender {
+    // Setup URL
+    NSURL *url_720p = [NSURL URLWithString:@"http://www.apple.com/trailers/home/xml/current_720p.xml"];
+    
+    // ..and the request
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url_720p
+                                             cachePolicy:NSURLRequestReturnCacheDataElseLoad
+                                         timeoutInterval:30];
+    // ..finally make the request!
+    NSData *urlData;
+    NSURLResponse *response;
+    NSError *error;
+    
+    urlData = [NSURLConnection sendSynchronousRequest:urlRequest
+                                    returningResponse:&response
+                                                error:&error];
+    
+    // Check for errors
+    if(!urlData){
+        NSAlert *alert = [NSAlert alertWithMessageText:@"Sorry, there seems to be some problem getting the XML feed"
+										 defaultButton:@"Appology accepted"
+									   alternateButton:nil
+										   otherButton:nil
+							 informativeTextWithFormat:[NSString stringWithFormat:@"Ensure Apple still exist and have a functioning website. Also check you internet connection hasn't exploded (Oh, the error was.. %@)", [error localizedDescription]]];
+        
+        [alert runModal];
+        return;
+    }
+    
+	[self processXml:urlData];
+
 }
 
 -(void)filter:(id)sender{
