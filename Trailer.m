@@ -36,7 +36,6 @@ didReceiveResponse:(NSURLResponse *)response {
 - (void)connection:(NSURLConnection *)connection
   didFailWithError:(NSError *)error {
     [responseData release];
-    [connection release];
     NSLog(@"Error retreving data for %@: %@", poster_url, [error localizedDescription]);
 }
 
@@ -46,7 +45,6 @@ didReceiveResponse:(NSURLResponse *)response {
     [self didChangeValueForKey:@"poster"];
     responseData = nil;
     [responseData release];
-    [connection release];
 }
 
 
