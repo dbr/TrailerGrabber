@@ -64,6 +64,7 @@
 }
 -(void)refresh:(id)sender {
     // Setup URL
+	//TODO: Move this to preference
     NSURL *url_720p = [NSURL URLWithString:@"http://www.apple.com/trailers/home/xml/current_720p.xml"];
     
     // ..and the request
