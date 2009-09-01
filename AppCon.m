@@ -75,28 +75,33 @@
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url_720p
                                              cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                          timeoutInterval:30];
-    // ..finally make the request!
-    NSData *urlData;
-    NSURLResponse *response;
-    NSError *error;
-    
-    urlData = [NSURLConnection sendSynchronousRequest:urlRequest
-                                    returningResponse:&response
-                                                error:&error];
-    
-    // Check for errors
-    if(!urlData){
-        NSAlert *alert = [NSAlert alertWithMessageText:@"Sorry, there seems to be some problem getting the XML feed"
-										 defaultButton:@"Appology accepted"
-									   alternateButton:nil
-										   otherButton:nil
-							 informativeTextWithFormat:[NSString stringWithFormat:@"Ensure Apple still exist and have a functioning website. Also check you internet connection hasn't exploded (Oh, the error was.. %@)", [error localizedDescription]]];
-        
-        [alert runModal];
-        return;
-    }
-    
-	[self processXml:urlData];
+	
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		// ..finally make the request!
+		NSData *urlData;
+		NSURLResponse *response;
+		__block NSError *error;
+		
+		urlData = [NSURLConnection sendSynchronousRequest:urlRequest
+										returningResponse:&response
+													error:&error];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// Check for errors
+			if(!urlData){
+				NSAlert *alert = [NSAlert alertWithMessageText:@"Sorry, there seems to be some problem getting the XML feed"
+												 defaultButton:@"Appology accepted"
+											   alternateButton:nil
+												   otherButton:nil
+									 informativeTextWithFormat:[NSString stringWithFormat:@"Ensure Apple still exist and have a functioning website. Also check you internet connection hasn't exploded (Oh, the error was..)", [error localizedDescription]]];
+				
+				[alert runModal];
+				return;
+			}
+			
+			[self processXml:urlData];
+		});
+	});
 
 }
 
