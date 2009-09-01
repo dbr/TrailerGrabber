@@ -15,6 +15,15 @@
     return ns;
 }
 
+-(void)defaultPoster {
+	// Sets the poster to the default image
+	NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+	NSString *defaultPosterPath = [resourcePath stringByAppendingPathComponent:@"defaultPoster.png"];
+	//NSImage *posterImage = [[NSImage alloc] initWithContentsOfFile:defaultPosterPath];
+	NSImage *posterImage = [[[NSImage alloc] initWithContentsOfFile:defaultPosterPath] autorelease];
+	self.poster = [posterImage TIFFRepresentation];
+}
+
 - (void)loadPoster {
     NSURL *myURL = [NSURL URLWithString:poster_url];
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL
@@ -37,11 +46,12 @@ didReceiveResponse:(NSURLResponse *)response {
   didFailWithError:(NSError *)error {
     [responseData release];
     NSLog(@"Error retreving data for %@: %@", poster_url, [error localizedDescription]);
+	[self defaultPoster];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [self willChangeValueForKey:@"poster"];
-    poster = responseData;
+    self.poster = responseData;
     [self didChangeValueForKey:@"poster"];
     responseData = nil;
     [responseData release];
@@ -53,5 +63,5 @@ didReceiveResponse:(NSURLResponse *)response {
 @synthesize poster;
 @synthesize preview_url;
 @synthesize poster_url;
-@synthesize download;
+@synthesize shouldDownload;
 @end

@@ -56,6 +56,10 @@
         // Get poster/location
         NSArray *poster = [curmovie objectsForXQuery:@"poster/location" error:&error];
         newtrailer.poster_url = [[poster objectAtIndex:0] stringValue];
+		
+		[newtrailer defaultPoster];
+		newtrailer.shouldDownload = [NSNumber numberWithBool:NO];
+
         [newtrailer loadPoster];
         
         [ArrayCon addObject:newtrailer];
