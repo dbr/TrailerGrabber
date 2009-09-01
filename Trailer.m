@@ -26,37 +26,33 @@
 
 - (void)loadPoster {
     NSURL *myURL = [NSURL URLWithString:poster_url];
+	
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:myURL
+												cachePolicy:NSURLRequestReturnCacheDataElseLoad
+											timeoutInterval:30];
+	
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		__block NSError *error;
+		NSData *urlData;
+		__block NSURLResponse *response;
+
+		urlData = [NSURLConnection sendSynchronousRequest:urlRequest
+										returningResponse:&response
+													error:&error];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			if(error) {
+				NSLog(@"Error while retriving poster: %@", [error localizedDescription]);
+			}
+			self.poster = urlData;
+		});
+		
+	});
+	
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:60];
     [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
 }
-
-- (void)connection:(NSURLConnection *)connection
-didReceiveResponse:(NSURLResponse *)response {
-    responseData = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection
-    didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection
-  didFailWithError:(NSError *)error {
-    [responseData release];
-    NSLog(@"Error retreving data for %@: %@", poster_url, [error localizedDescription]);
-	[self defaultPoster];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [self willChangeValueForKey:@"poster"];
-    self.poster = responseData;
-    [self didChangeValueForKey:@"poster"];
-    responseData = nil;
-    [responseData release];
-}
-
 
 @synthesize title;
 @synthesize description;
